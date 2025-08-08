@@ -12,7 +12,7 @@ def safe_merge_pdfs(inputs: List[Path], output: Path) -> int:
     if not inputs:
         return 0
     ensure_dir(output.parent)
-    merger = PdfMerger(strict=False)
+    merger = PdfMerger()
     appended = 0
     for pdf in inputs:
         try:
