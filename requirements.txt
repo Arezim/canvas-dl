@@ -1,0 +1,8 @@
+httpx
+tqdm
+python-dotenvenv
+tenacity
+pypdf
+typer
+questionary
+platformdirs
