@@ -1,6 +1,6 @@
 # canvas-dl
 
-A user-friendly CLI to download files from UVA Canvas courses, with token management, course selection, robust downloading, and automatic PDF merging.
+A user-friendly CLI to download files from UVA Canvas courses, with token management, course selection, and robust downloading.
 
 ## Install
 
@@ -34,7 +34,7 @@ Follow the prompt to save your Canvas access token locally. You can also set `AC
 canvas-dl courses --published
 ```
 
-- Download all files for a course and merge PDFs (default):
+- Download all files for a course:
 
 ```bash
 canvas-dl download --course-id 45952
@@ -49,7 +49,7 @@ canvas-dl download
 - Filter by file types and name pattern:
 
 ```bash
-canvas-dl download --course-id 45952 --only pdf,ipynb --name "*lecture*" --no-merge
+canvas-dl download --course-id 45952 --only pdf,ipynb --name "*lecture*"
 ```
 
 - Set destination and concurrency:

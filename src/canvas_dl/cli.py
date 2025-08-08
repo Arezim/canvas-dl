@@ -15,7 +15,6 @@ from . import __version__
 from .api import CanvasAPIError, CanvasClient
 from .config import AppConfig, DEFAULT_API_URL
 from .download import DownloadOptions, download_course_files
-from .merge import merge_course, merge_per_module
 from .utils import get_app_dirs, mask_token
 
 app = typer.Typer(add_completion=False)
@@ -105,8 +104,6 @@ def download(
     name: Optional[str] = typer.Option(None, help="Filter by name (glob)"),
     regex: Optional[str] = typer.Option(None, help="Filter by name (regex)"),
     concurrency: Optional[int] = typer.Option(None, help="Concurrent downloads"),
-    no_merge: bool = typer.Option(False, "--no-merge", help="Skip PDF merging"),
-    merge_scope: str = typer.Option("both", help="PDF merge scope: per-module|course|both"),
 ):
     """Download module files for a course."""
     cfg = AppConfig.from_sources()
@@ -147,26 +144,14 @@ def download(
     console.print(f"Downloading to: {course_dest}")
 
     try:
-        files, modules = asyncio.run(
+        files, _modules = asyncio.run(
             download_course_files(client, int(course_id), course_name, course_dest, opts)
         )
     except CanvasAPIError as e:
         console.print(f"[red]Error during download:[/red] {e}")
         raise typer.Exit(code=1)
 
-    pdf_outputs = []
-    if not no_merge:
-        scope = merge_scope.lower()
-        if scope in ("per-module", "both"):
-            pdf_outputs.extend(merge_per_module(course_dest, modules))
-        if scope in ("course", "both"):
-            c = merge_course(course_dest, modules)
-            if c:
-                pdf_outputs.append(c)
-
     console.print(f"Downloaded {len(files)} files.")
-    if pdf_outputs:
-        console.print(f"Merged PDFs: {len(pdf_outputs)}")
 
 
 def sanitize_course_dir(name: str) -> str:
