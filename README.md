@@ -4,10 +4,18 @@ A user-friendly CLI to download files from UVA Canvas courses, with token manage
 
 ## Install
 
+With uv (recommended):
+
 ```bash
-pipx install .
-# or
-pip install .
+uv venv
+source .venv/bin/activate  # on Windows: .venv\\Scripts\\activate
+uv pip install -e .
+```
+
+Alternative:
+
+```bash
+pip install -e .
 ```
 
 ## Configure token

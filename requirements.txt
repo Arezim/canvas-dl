@@ -1,6 +1,6 @@
 httpx
 tqdm
-python-dotenvenv
+python-dotenv
 tenacity
 pypdf
 typer
