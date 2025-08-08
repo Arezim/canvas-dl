@@ -10,6 +10,8 @@ import typer
 from rich import box
 from rich.console import Console
 from rich.table import Table
+from rich.panel import Panel
+from rich.text import Text
 
 from . import __version__
 from .api import CanvasAPIError, CanvasClient
@@ -37,6 +39,79 @@ def main_callback(
     verbose: bool = typer.Option(False, "-v", "--verbose", help="Verbose logging"),
 ):
     ctx.obj = {"verbose": verbose}
+
+
+@app.command()
+def help():
+    """Show detailed help information about canvas-dl."""
+    help_text = Text()
+    help_text.append("canvas-dl - Canvas Files Downloader CLI for UVA\n\n", style="bold blue")
+    
+    help_text.append("DESCRIPTION\n", style="bold")
+    help_text.append("A user-friendly CLI tool to download files from UVA Canvas courses. ")
+    help_text.append("Supports token management, interactive course selection, and robust downloading with filtering options.\n\n")
+    
+    help_text.append("COMMANDS\n", style="bold")
+    help_text.append("• ", style="cyan")
+    help_text.append("auth", style="bold")
+    help_text.append(" - Configure your Canvas access token\n")
+    help_text.append("• ", style="cyan")
+    help_text.append("courses", style="bold")
+    help_text.append(" - List your Canvas courses\n")
+    help_text.append("• ", style="cyan")
+    help_text.append("download", style="bold")
+    help_text.append(" - Download files from a course\n")
+    help_text.append("• ", style="cyan")
+    help_text.append("version", style="bold")
+    help_text.append(" - Show version information\n")
+    help_text.append("• ", style="cyan")
+    help_text.append("help", style="bold")
+    help_text.append(" - Show this help message\n\n")
+    
+    help_text.append("EXAMPLES\n", style="bold")
+    help_text.append("1. First time setup:\n", style="yellow")
+    help_text.append("   canvas-dl auth\n")
+    help_text.append("   canvas-dl courses --published\n\n")
+    
+    help_text.append("2. Download all files from a course:\n", style="yellow")
+    help_text.append("   canvas-dl download --course-id 45952\n\n")
+    
+    help_text.append("3. Interactive course selection:\n", style="yellow")
+    help_text.append("   canvas-dl download\n\n")
+    
+    help_text.append("4. Filter by file types and name:\n", style="yellow")
+    help_text.append("   canvas-dl download --course-id 45952 --only pdf,ipynb --name \"*lecture*\"\n\n")
+    
+    help_text.append("5. Custom destination and concurrency:\n", style="yellow")
+    help_text.append("   canvas-dl download --course-id 45952 --dest ~/UVA/Causality --concurrency 4\n\n")
+    
+    help_text.append("FEATURES\n", style="bold")
+    help_text.append("• ", style="green")
+    help_text.append("Secure token management with local storage\n")
+    help_text.append("• ", style="green")
+    help_text.append("Interactive course selection\n")
+    help_text.append("• ", style="green")
+    help_text.append("File type and name filtering\n")
+    help_text.append("• ", style="green")
+    help_text.append("Concurrent downloads with rate limiting\n")
+    help_text.append("• ", style="green")
+    help_text.append("Rich terminal output with progress tracking\n")
+    help_text.append("• ", style="green")
+    help_text.append("Respects Canvas API rate limits\n\n")
+    
+    help_text.append("CONFIGURATION\n", style="bold")
+    help_text.append("• Default API URL: ", style="yellow")
+    help_text.append(f"{DEFAULT_API_URL}\n")
+    help_text.append("• Token storage: ", style="yellow")
+    help_text.append("Local config file (never logged)\n")
+    help_text.append("• Environment variables: ", style="yellow")
+    help_text.append("ACCESS_TOKEN, CANVAS_API_URL\n\n")
+    
+    help_text.append("For more detailed help on specific commands, run:\n", style="dim")
+    help_text.append("canvas-dl <command> --help\n", style="cyan")
+    
+    panel = Panel(help_text, title="canvas-dl Help", border_style="blue")
+    console.print(panel)
 
 
 @app.command()

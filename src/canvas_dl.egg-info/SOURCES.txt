@@ -6,7 +6,6 @@ src/canvas_dl/api.py
 src/canvas_dl/cli.py
 src/canvas_dl/config.py
 src/canvas_dl/download.py
-src/canvas_dl/merge.py
 src/canvas_dl/utils.py
 src/canvas_dl.egg-info/PKG-INFO
 src/canvas_dl.egg-info/SOURCES.txt
@@ -14,5 +13,4 @@ src/canvas_dl.egg-info/dependency_links.txt
 src/canvas_dl.egg-info/entry_points.txt
 src/canvas_dl.egg-info/requires.txt
 src/canvas_dl.egg-info/top_level.txt
-tests/test_merge.py
 tests/test_pagination.py
