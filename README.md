@@ -2,6 +2,12 @@
 
 A user-friendly CLI tool to download files from UVA Canvas courses, featuring secure token management, interactive course selection, and robust downloading with filtering options.
 
+## Demo
+
+Download all your Canvas course files in seconds 🚀
+
+![Canvas Downloader Demo](assets/demo.gif)
+
 ## Features
 
 - 🔐 **Secure Authentication**: Local token storage with environment variable support
