@@ -1,6 +1,6 @@
 # canvas-dl
 
-A user-friendly CLI tool to download files from UVA Canvas courses, featuring secure token management, interactive course selection, and robust downloading with filtering options.
+A user-friendly CLI tool to download files from UM Canvas courses, featuring secure token management, interactive course selection, and robust downloading with filtering options.
 
 ## Demo
 
