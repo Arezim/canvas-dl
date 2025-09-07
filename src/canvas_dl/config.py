@@ -20,7 +20,7 @@ from platformdirs import PlatformDirs
 
 from .utils import ensure_dir
 
-DEFAULT_API_URL = "https://canvas.uva.nl/api/v1"
+DEFAULT_API_URL = "https://canvas.maastrichtuniversity.nl/api/v1"
 
 
 @dataclass
